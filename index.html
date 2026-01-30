@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IQRA Books</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#f4f6fb;
+      color:#222;
+      scroll-behavior:smooth;
+    }
+
+    /* ========== NAVBAR ========== */
+    header{
+      background: #434743;
+      color:rgb(248, 247, 247);
+      padding:14px 18px;
+      display: flex;
+      justify-content:space-between;
+      align-items:center;
+      border: 1px solid #222;
+      position:sticky;
+      top:0;
+      height: 100px;
+      z-index:1000;
+    }
+
+    .logo{
+      font-size:50px;
+      font-weight:bold;
+      letter-spacing:1px;
+    }
+
+    .menu-icon{
+      font-size:26px;
+      cursor:pointer;
+      user-select:none;
+    }
+
+    /* ========== SIDE MENU ========== */
+    .overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.4);
+      display:none;
+      z-index:900;
+    }
+
+    .overlay.show{
+      display:block;
+    }
+
+    .side-menu{
+      position:fixed;
+      top:0;
+      right:-260px;
+      width:260px;
+      height:100%;
+      background:white;
+      box-shadow:-4px 0 12px rgba(0,0,0,0.2);
+      padding-top:70px;
+      transition:0.3s ease;
+      z-index:1000;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .side-menu.show{
+      right:0;
+    }
+
+    .side-menu a{
+      text-decoration:none;
+      color:#222;
+      padding:16px 22px;
+      border-bottom:1px solid #eee;
+      font-size:16px;
+      transition:0.2s;
+    }
+
+    .side-menu a:hover{
+      background:#f1f2ff;
+      color:#0a7cff;
+    }
+
+    /* ========== MAIN ========== */
+    main{
+      padding:20px;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    section{
+      margin-bottom:50px;
+    }
+
+    .section-title{
+      font-size:22px;
+      font-weight:bold;
+      margin-bottom:14px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .see-all{
+      font-size:14px;
+      color:#0a7cff;
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    .see-all:hover{
+      text-decoration:underline;
+    }
+
+    /* ========== BOOK GRID ========== */
+    .books-grid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+    }
+
+    .book-card{
+      width:220px;
+      background:white;
+      border-radius:14px;
+      padding:12px;
+      box-shadow:0 6px 16px rgba(0,0,0,0.08);
+      display:flex;
+      flex-direction:column;
+      transition:0.3s ease;
+    }
+
+    .book-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 12px 24px rgba(0,0,0,0.19);
+    }
+
+    .book-card img{
+      width:100%;
+      height:290px;
+      object-fit:cover;
+      border-radius:10px;
+    }
+
+    .book-info{
+      margin-top:10px;
+      flex:1;
+    }
+
+    .book-title{
+      font-size:15px;
+      font-weight:bold;
+      margin-bottom:4px;
+    }
+
+    .book-author{
+      font-size:13px;
+      color:#666;
+      margin-bottom:4px;
+    }
+
+    .book-rating{
+      font-size:13px;
+      color:#f59e0b;
+      margin-bottom:4px;
+    }
+
+    .book-sold{
+      font-size:12px;
+      color:#777;
+      margin-bottom:6px;
+    }
+
+    .book-price{
+      font-size:16px;
+      font-weight:bold;
+      margin-bottom:8px;
+    }
+
+    .buy-btn{
+      margin-top:auto;
+      background:#0a7cff;
+      color:white;
+      border:none;
+      padding:10px;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:14px;
+      transition:0.25s;
+    }
+
+    .buy-btn:hover{
+      background:#075fd4;
+    }
+      .search-box{
+        max-width: 880px;
+        width: 100%;
+        display: flex;
+        background-color: antiquewhite;
+        color: #333;
+        font-size:16px;
+        height: 36px;
+        border:1px solid #080000;
+        border-radius:3px;
+        padding: 6px 10px;
+        margin-bottom:20px;
+      }
+      .search {
+        width: 100%;
+        border: none;
+        font-size: 16px;
+        background: transparent;
+        outline: none;
+      }
+      .search-box:hover{
+        box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      }
+      .search-box:focus-within{
+        box-shadow:0 6px 16px rgba(0,0,0,0.2);
+      }
+     
+    /* ========== QUOTES ========== */
+    .quotes{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:16px;
+    }
+
+    .quote-card{
+      background:white;
+      padding:16px;
+      border-radius:12px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .quote-card span{
+      display:block;
+      margin-top:10px;
+      font-weight:bold;
+      color:#0a7cff;
+    }
+
+    /* ========== FOOTER ========== */
+    footer{
+      background:#0a7cff;
+      color:white;
+      text-align:center;
+      padding:16px;
+      font-size:14px;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media(max-width:600px){
+      .book-card{
+        width:100%;
+      }
+    }
+    .content{
+      display:flex;
+      align-items:center;
+      margin-left: 890px;
+      gap:10px;
+      border: 1px solid #160101;
+    }
+  </style>
+</head>
+<body> 
+
+  <!-- ========== NAVBAR ========== -->
+   
+  <header>
+     <img src="images/download__2_-removebg-preview.png" alt="IQRA Books Logo" width="200" height="120">
+    <div class="logo">IQRA Books</div>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+  <!-- ========== SIDE MENU (INTERNAL LINKS) ========== -->
+  <nav id="sideMenu" class="side-menu">
+    <a href="#popular" onclick="closeMenu()">📚 Popular Books</a>
+    <a href="#best" onclick="closeMenu()">🔥 Best Sellers</a>
+    <a href="#new" onclick="closeMenu()">✨ New Arrivals</a>
+    <a href="#cheap" onclick="closeMenu()">💸 Cheap Books</a>
+    <a href="#quotes" onclick="closeMenu()">💬 Quotes</a>
+    <a href="#footer" onclick="closeMenu()">© Footer</a>
+    <a href="about.html" onclick="closeMenu()">About Us</a>
+  </nav>
+  </div>
+
+  <hr>
+  <!-- ========== MAIN CONTENT ========== -->
+  <main>
+<div class="content">
+    <img src="images/images (1).png" alt="cover image" width="40px" height="40px">
+    <button class="sing-up">Account</button>
+  </div>
+    <div class="search-box">
+      <input type="text" class="search" id="searchInput" placeholder="Search books" />
+      <div class="search-icon">&#128269;</div>
+    
+     <!-- <img   class="search-icon"src="images/download (2).png" alt="Search Icon" width="15" height="15" -->
+    
+      <!--<div class="search-icon">&#128269;</div>-->
+      
+      
+    </div>
+
+    <!-- ===== POPULAR BOOKS ===== -->
+    <section id="popular">
+      <div class="section-title">
+        <span>Popular Books</span>
+        <a href="books.html" class="see-all">See all</a>
+      </div>
+
+      <div class="books-grid">
+        <div class="book-card">
+          <img src="images/DSC_0065_0.1x (1).jpg">
+          <div class="book-info">
+            <div class="book-title">Atomic Habits</div>
+            <div class="book-author">James Clear</div>
+            <div class="book-rating">⭐⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 2,000,000</div>
+            <div class="book-price">$15</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+
+        <div class="book-card">
+          <img src="images/download (1).jpg">
+          <div class="book-info">
+            <div class="book-title">Think and Grow Rich</div>
+            <div class="book-author">Napoleon Hill</div>
+            <div class="book-rating">⭐⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 100, 000,000</div>
+            <div class="book-price">$20</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+
+        <div class="book-card">
+          <img src="images/download.jpg">
+          <div class="book-info">
+            <div class="book-title">The Power of Your Subconscious Mind</div>
+            <div class="book-author">Joseph Murphy</div>
+            <div class="book-rating">⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 700,000</div>
+            <div class="book-price">$18</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+
+        <div class="book-card">
+          <img src="images/images (3).jpg">
+          <div class="book-info">
+            <div class="book-title">Deep Work</div>
+            <div class="book-author">Cal Newport</div>
+            <div class="book-rating">⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 500,000</div>
+            <div class="book-price">$20</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== POPULAR ALL (SEE ALL TARGET) ===== -->
+    <section id="popular-all">
+      <div class="section-title">
+        <span>All Popular Books</span>
+      </div>
+
+      <div class="books-grid">
+        <div class="book-card">
+          <img src="images/81bsw6fnUiL._AC_UF1000,1000_QL80_.jpg">
+          <div class="book-info">
+            <div class="book-title">Rich Dad Poor Dad</div>
+            <div class="book-author">Robert Kiyosaki</div>
+            <div class="book-rating">⭐⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 200,000,000</div>
+            <div class="book-price">$22</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+
+        <div class="book-card">
+          <img src="images/crime-and-punishment-150.jpg">
+          <div class="book-info">
+            <div class="book-title">Crime and punishment</div>
+            <div class="book-author">Fyodor Doestoyevsk</div>
+            <div class="book-rating">⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 250,000</div>
+            <div class="book-price">$28</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+
+        <div class="book-card">
+          <img src="images/31RW8HQ31WL._SY445_SX342_ML2_.jpg">
+          <div class="book-info">
+            <div class="book-title">The 48 Laws of Power</div>
+            <div class="book-author">Robert Greene</div>
+            <div class="book-rating">⭐⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 500,000</div>
+            <div class="book-price">$30</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+
+        <div class="book-card">
+          <img src="images/images (2).jpg">
+          <div class="book-info">
+            <div class="book-title">Losing the Plot</div>
+            <div class="book-author">Pardis Dailbashi</div>
+            <div class="book-rating">⭐⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 1,200,000</div>
+            <div class="book-price">$17</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BEST SELLERS ===== -->
+    <section id="best">
+      <div class="section-title">
+        <span>Best Sellers</span>
+      </div>
+
+      <div class="books-grid">
+        <div class="book-card">
+          <img src="images/content.jpg">
+          <div class="book-info">
+            <div class="book-title">Andrew Ross Korsin</div>
+            <div class="book-author">Jay Shetty</div>
+            <div class="book-rating">⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 300,000</div>
+            <div class="book-price">$21</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+
+        <div class="book-card">
+          <img src="images/the-7-habits-of-highly-effective-people-revised-and-updated-9781471195204_hr.jpg">
+          <div class="book-info">
+            <div class="book-title">7 Habits of Highly Effective People</div>
+            <div class="book-author">Stephen Covey</div>
+            <div class="book-rating">⭐⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 850,000</div>
+            <div class="book-price">$26</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+
+        <div class="book-card">
+          <img src="https://picsum.photos/300/400?11">
+          <div class="book-info">
+            <div class="book-title">Ikigai</div>
+            <div class="book-author">Hector Garcia</div>
+            <div class="book-rating">⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 420,000</div>
+            <div class="book-price">$15</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+
+        <div class="book-card">
+          <img src="https://picsum.photos/300/400?12">
+          <div class="book-info">
+            <div class="book-title">The Psychology of Money</div>
+            <div class="book-author">Morgan Housel</div>
+            <div class="book-rating">⭐⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 700,000</div>
+            <div class="book-price">$20</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NEW ARRIVALS ===== -->
+    <section id="new">
+      <div class="section-title">
+        <span>New Arrivals</span>
+      </div>
+
+      <div class="books-grid">
+        <div class="book-card">
+          <img src="https://picsum.photos/300/400?13">
+          <div class="book-info">
+            <div class="book-title">Mindset</div>
+            <div class="book-author">Carol Dweck</div>
+            <div class="book-rating">⭐⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 90,000</div>
+            <div class="book-price">$18</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+
+        <div class="book-card">
+          <img src="images/images.png">
+          <div class="book-info">
+            <div class="book-title">Digital Minimalism</div>
+            <div class="book-author">Cal Newport</div>
+            <div class="book-rating">⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 60,000</div>
+            <div class="book-price">$17</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+
+        <div class="book-card">
+          <img src="https://picsum.photos/300/400?15">
+          <div class="book-info">
+            <div class="book-title">Essentialism</div>
+            <div class="book-author">Greg McKeown</div>
+            <div class="book-rating">⭐⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 100,000</div>
+            <div class="book-price">$19</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+
+        <div class="book-card">
+          <img src="https://picsum.photos/300/400?16">
+          <div class="book-info">
+            <div class="book-title">Grit</div>
+            <div class="book-author">Angela Duckworth</div>
+            <div class="book-rating">⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 80,000</div>
+            <div class="book-price">$21</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CHEAP BOOKS ===== -->
+    <section id="cheap">
+      <div class="section-title">
+        <span>Cheap Books</span>
+      </div>
+
+      <div class="books-grid">
+        <div class="book-card">
+          <img src="https://picsum.photos/300/400?17">
+          <div class="book-info">
+            <div class="book-title">Who Moved My Cheese?</div>
+            <div class="book-author">Spencer Johnson</div>
+            <div class="book-rating">⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 500,000</div>
+            <div class="book-price">$9</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+
+        <div class="book-card">
+          <img src="https://picsum.photos/300/400?18">
+          <div class="book-info">
+            <div class="book-title">The Richest Man in Babylon</div>
+            <div class="book-author">George Clason</div>
+            <div class="book-rating">⭐⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 600,000</div>
+            <div class="book-price">$10</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+
+        <div class="book-card">
+          <img src="https://picsum.photos/300/400?19">
+          <div class="book-info">
+            <div class="book-title">As a Man Thinketh</div>
+            <div class="book-author">James Allen</div>
+            <div class="book-rating">⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 300,000</div>
+            <div class="book-price">$8</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+
+        <div class="book-card">
+          <img src="https://picsum.photos/300/400?20">
+          <div class="book-info">
+            <div class="book-title">The Art of War</div>
+            <div class="book-author">Sun Tzu</div>
+            <div class="book-rating">⭐⭐⭐⭐⭐</div>
+            <div class="book-sold">Sold: 900,000</div>
+            <div class="book-price">$11</div>
+          </div>
+          <button class="buy-btn">Buy Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== QUOTES ===== -->
+    <section id="quotes">
+      <div class="section-title">
+        <span>What Readers Say</span>
+      </div>
+
+      <div class="quotes">
+        <div class="quote-card">
+          “This book completely changed how I think about habits and success.”
+          <span>- Aadan Sahan</span>
+        </div>
+
+        <div class="quote-card">
+          “IQRA Books always gives me the best books for personal growth.”
+          <span>- sh. mustafe x.ismaaciil</span>
+        </div>
+
+        <div class="quote-card">
+          “I love the clean design and how easy it is to find books.”
+          <span>- Najaad </span>
+        </div>
+
+        <div class="quote-card">
+          “Every book here feels carefully selected and valuable.”
+          <span>- Ayaan H.</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer id="footer">
+    © 2026 IQRA Books. All rights reserved.
+  </footer>
+
+  <!-- ========== JAVASCRIPT (MENU ONLY) ========== -->
+  <script>
+    function toggleMenu(){
+      document.getElementById("sideMenu").classList.toggle("show");
+      document.getElementById("overlay").classList.toggle("show");
+    }
+
+    function closeMenu(){
+      document.getElementById("sideMenu").classList.remove("show");
+      document.getElementById("overlay").classList.remove("show");
+      
+      
+    }
+    const searchInput = document.getElementById("searchInput");
+    const books = document.querySelectorAll(".book-card");
+
+    searchInput.addEventListener("keyup", function () {
+      const value = searchInput.value.toLowerCase();
+
+      books.forEach(book => {
+        const text = book.innerText.toLowerCase();
+        book.style.display = text.includes(value) ? "flex" : "none";
+      });
+    });
+
+  </script>
+
+</body>
+</html>

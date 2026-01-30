@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IQRA Books</title>
+
+<style>
+*{
+ 
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:#f4f6fa;
+  color:#111;
+}
+
+/* HEADER */
+header{
+  background:#0f172a;
+  color:white;
+  padding:21px;
+  text-align:center;
+  font-size:24px;
+  font: 2em sans-serif;
+  font-weight:bold;
+}
+
+/* SECTION */
+.section{
+  padding:25px 20px 10px;
+}
+
+.section h2{
+  font-size:20px;
+  margin-bottom:15px;
+}
+
+/* BOOK CONTAINER */
+.books{
+  display:flex;
+  flex-wrap:wrap;          /* MUHIIM */
+  gap:20px;
+}
+
+/* BOOK CARD */
+.book{
+  display: flex;
+  flex-direction: column;
+  width:220px;
+  
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+  transition:.3s;
+}
+
+.book:hover{
+  transform:translateY(-6px);
+}
+
+/* IMAGE */
+.book img{
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+}
+
+/* INFO */
+.info{
+  padding: 8px;
+  font-size:14px;
+  height: 30%;
+  background-color: #0f172a;
+  color: white;
+}
+
+.info h4{
+  font-size:16px;
+  margin-top: 10px;
+  
+}
+
+.author{
+  color:#0e0d0d;
+  font-size:15px;
+  margin-top: -7px;
+  padding: 3px;
+  margin-right: 0px;
+  margin-top: 20px;
+  color: white;
+}
+
+.rating{
+  color:rgb(240, 240, 239);
+  margin:px 0;
+  margin-top: 20px;
+}
+
+.meta {
+  font-size: 13px;
+  color:#faf8f8;
+  margin-top: 10px;
+  margin: 20px;
+}
+
+.price{
+  font-size: 24px;
+  font-weight:bold;
+  
+  color:#f9f9fa;
+}
+
+button{
+  width: 215px;
+  height: 30px;
+  margin-right: 4px;
+  margin-left: -5px;
+  margin-top: -90px;
+}
+.back-btn{
+  background-color: #fdfdfd;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: rgb(70, 73, 238);
+  
+  border: 1px solid #0f172a;
+  padding: 0px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* FOOTER */
+footer{
+
+  margin-top:40px;
+  background:#020617;
+  color:#aaa;
+  text-align:center;
+  padding:15px;
+  font-size:13px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  📚 IQRA Books Library
+</header>
+
+<!-- ===== PUBLIC BOOKS ===== -->
+<section class="section">
+  <h2>Popular Books</h2>
+  <a href="index.html"><button class="back-btn">Back to home</button></a>
+  <div class="books">
+
+    <div class="book">
+      <img src="images/download (1).jpg" alt="">
+      <div class="info">
+        <h4>The Power of your subconcius Mind</h4>
+        <div class="author">Dr Joseph Murphy</div>
+        <div class="rating">★★★☆☆</div>
+        <div class="meta">Sold: 400,000 copies</div>
+        <div class="price">$30</div>
+        
+        
+      </div>
+    </div>
+
+    <div class="book">
+      <img src="images/download.jpg" alt="">
+      <div class="info">
+        <h4>Think & Grow Rich</h4>
+        <div class="author">Napoleon Hill</div>
+        <div class="rating">★★★★☆</div>
+        <div class="meta">Sold: 80,500 copies</div>
+        <div class="price">$20</div>
+         
+          
+      </div>
+    </div>
+
+    <div class="book">
+      <img src="images/DSC_0065_0.1x (1).jpg" alt="">
+      <div class="info">
+        <h4>Atomic Habits</h4>
+        <div class="author">James Clear</div>
+        <div class="rating">★★★★★</div>
+        <div class="meta">Sold: 2,000,200 copies</div>
+        <div class="price">$23</div>
+      </div>
+    </div>
+
+    <div class="book">
+      <img src="images/51IZrse5R7L._AC_UF1000,1000_QL80_.jpg" alt="">
+      <div class="info">
+        <h4>The Art Of Critical Thinking</h4>
+        <div class="author">Amina Yusuf</div>
+        <div class="rating">★★☆☆☆</div>
+        <div class="meta">Sold: 6,900</div>
+        <div class="price">$11</div>
+        
+      </div>
+    </div>
+
+    <div class="book">
+      <img src="images/58293924.jpg" alt="">
+      <div class="info">
+        <h4>Black Of Night</h4>
+        <div class="author"> Christina Henry</div>
+        <div class="rating">★★★☆</div>
+        <div class="meta">Sold: 100,900 copies</div>
+        <div class="price">$16</div>
+        
+      </div>
+    </div>
+
+    <div class="book">
+      <img src="images/download.png" alt="">
+      <div class="info">
+        <h4>The Psychology Of Money</h4>
+        <div class="author">MORGAN HOUSEL</div>
+        <div class="rating">★★★★☆</div>
+        <div class="meta">Sold: 80,900 copies</div>
+        <div class="price">$26</div>
+      </div>
+    </div>
+
+    <div class="book">
+      <img src="images/images (2).jpg" alt="">
+      <div class="info">
+        <h4>Losing The Plot</h4>
+        <div class="author">Parsin Dablashi</div>
+        <div class="rating">★★★☆</div>
+        <div class="meta">Sold: 10,000 copies</div>
+        <div class="price">$7</div>
+      </div>
+    </div>
+
+    <div class="book">
+      <img src="images/images.jpg" alt="">
+      <div class="info">
+        <h4>Don Quixote</h4>
+        <div class="author">Don Quixote</div>
+        <div class="rating">★★★☆☆</div>
+        <div class="meta">Sold: 80,900 copies</div>
+        <div class="price">$11</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MOST COPIED ===== -->
+<section class="section">
+  <h2>Most Copied</h2>
+
+  <div class="books">
+
+    <div class="book">
+      <img src="images/book5.jpg" alt="">
+      <div class="info">
+        <h4>Success Path</h4>
+        <div class="author">Hassan Omar</div>
+        <div class="rating">★★★★★</div>
+        <div class="meta">Copied: 22,000</div>
+        <div class="price">$20</div>
+      </div>
+    </div>
+
+    <div class="book">
+      <img src="images/book6.jpg" alt="">
+      <div class="info">
+        <h4>Atomic Habits</h4>
+        <div class="author">James Clear</div>
+        <div class="rating">★★★★★</div>
+        <div class="meta">Copied: 19,400</div>
+        <div class="price">$17</div>
+      </div>
+    </div>
+
+    <div class="book">
+      <img src="images/book7.jpg" alt="">
+      <div class="info">
+        <h4>Mind Control</h4>
+        <div class="author">Robert Hill</div>
+        <div class="rating">★★★★☆</div>
+        <div class="meta">Copied: 14,300</div>
+        <div class="price">$14</div>
+      </div>
+    </div>
+
+    <div class="book">
+      <img src="images/book8.jpg" alt="">
+      <div class="info">
+        <h4>Rich Thinking</h4>
+        <div class="author">Napoleon Hill</div>
+        <div class="rating">★★★★★</div>
+        <div class="meta">Copied: 25,000</div>
+        <div class="price">$22</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 IQRA Books. All rights reserved.
+</footer>
+
+</body>
+</html>
+
+

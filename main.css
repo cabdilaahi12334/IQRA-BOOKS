@@ -1,0 +1,150 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:#f4f6fa;
+}
+
+/* NAVBAR */
+.navbar{
+  background:#0f172a;
+  color:white;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.menu a{
+  color:white;
+  text-decoration:none;
+  margin:0 10px;
+}
+
+.settings{
+  cursor:pointer;
+  font-size:22px;
+}
+
+/* SECTION */
+.section{
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.see-all{
+  color:#2563eb;
+  cursor:pointer;
+}
+
+/* BOOKS */
+.books{
+  padding:0 20px 20px;
+}
+
+.horizontal{
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+}
+
+.horizontal::-webkit-scrollbar{
+  display:none;
+}
+
+.vertical{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+/* BOOK CARD */
+.book{
+  min-width:200px;
+  height:320px;
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+  display:flex;
+  flex-direction:column;
+  transition:.3s;
+}
+
+.book:hover{
+  transform:translateY(-6px);
+}
+
+.book img{
+  width:100%;
+  height:60%;
+  object-fit:cover;
+}
+
+.info{
+  padding:10px;
+  font-size:13px;
+}
+
+.price{
+  font-size: 16px;
+  font-weight:bold;
+  color:#0f172a;
+  margin-bottom: -40px;
+  margin-top: 10px;
+}
+
+/* VERTICAL BOOK */
+.vertical-book{
+  flex-direction:row;
+  height:120px;
+}
+
+.vertical-book img{
+  width:30%;
+  height:100%;
+}
+
+/* QUOTES */
+.quotes{
+  background:#0f172a;
+  color:white;
+  padding:40px 20px;
+  text-align:center;
+  font-style:italic;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:15px;
+  background:#020617;
+  color:#aaa;
+  font-size:13px;
+}
+.logo-image img{
+    background-color: #0f172a;
+    
+}
+/*
+book-business/
+│
+├── index.html
+├── books.html
+├── about.html
+├── contact.html
+│
+├── css/
+│   └── style.css
+│
+├── js/
+│   └── main.js
+│
+└── images/
+*/
